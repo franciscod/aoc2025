@@ -1,4 +1,4 @@
-TODAY = $(shell date +"%d")
+TODAY = $(shell date +"%e")
 YEAR = 2025
 
 today: $(TODAY)/Makefile
