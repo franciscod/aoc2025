@@ -7,10 +7,21 @@ rows, cols, mp, rmp = readmp(lines)
 # rows, cols, mp, rmp = widemp(mp)
 # printmp(mp, rows, cols)
 
-from functools import cache
-
-@cache
+# greedy, by santy
 def maxbank(bank, k, s=0):
+    r = ""
+    da = len(bank) - k
+    for d in bank:
+        while r and da and r[-1] < d:
+            r = r[:-1]
+            da -= 1
+        r += d
+    return int(r[:k])
+
+
+# dp, slow
+@cache
+def maxbank_dp(bank, k, s=0):
     n = 0
     if k == 0:
         return 0
@@ -31,7 +42,7 @@ def maxbank(bank, k, s=0):
 
 s = 0
 for r in range(rows):
-    print(r, "...")
+    # print(r, "...")
     bank = ""
     for c in range(cols):
         bank += mp[r,c]
