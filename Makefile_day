@@ -3,6 +3,13 @@ YEAR = 2025
 tryhard: wait all
 all: input level pre edit
 
+1: edit
+2: edit2
+l1: loop
+l2: loop2
+t1: looptest1
+t2: looptest2
+
 edit: test.txt
 	touch -a solve.py test.txt
 	vim -p solve.py test.txt pre.txt input.txt lib.py
