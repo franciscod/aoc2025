@@ -68,7 +68,7 @@ solve2.py:
 	cp solve.py solve2.py
 
 test.txt: pre.txt
-	cp pre.txt test.txt
+	sed -e :a -e '/^\n*$$/{$$d;N;ba' -e '}' <pre.txt >test.txt
 
 test2.txt:
 	cp test.txt test2.txt
