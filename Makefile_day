@@ -6,6 +6,7 @@ all: input level pre edit
 2: edit2
 l: loop
 t: looptest
+s: solve
 
 edit: test.txt
 	touch -a solve.py test.txt
