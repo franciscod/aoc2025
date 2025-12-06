@@ -1,7 +1,6 @@
 from lib import *
 # import networkx as nx
 # sys.setrecursionlimit(2999)
-import operator
 
 lines = inputlines()
 # rows, cols, mp, rmp = readmp(lines)
@@ -24,25 +23,24 @@ for l in lines:
         ops = l.split()
         op = True
 
-print(xs)
-print(ops)
-print(y)
+# print(xs)
+# print(ops)
+# print(y)
+
+def red(aa, op):
+    if op == '+':
+        f = add
+    elif op == '*':
+        f = mul
+
+    r = reduce(f, aa)
+    return r
 
 for i, aa in enumerate(zip(*xs)):
     # print(aa)
     # print(ops[i])
 
-    r = 0
-    if ops[i] == '+':
-        r = 0
-        f = operator.add
-    elif ops[i] == '*':
-        r = 1
-        f = operator.mul
-
-    for a in aa:
-        r = f(r, a)
-    s += r
+    s += red(aa, ops[i])
 
 
 print("?")

@@ -9,59 +9,35 @@ lines = inputlines(nostrip=True)
 # printmp(mp, rows, cols)
 
 s = 0
-xs = []
-y = None
-ops = []
-op = False
-
-for l in lines:
-    try:
-        i = parseints(l)
-        if not op:
-            xs.append(i)
-        else:
-            y = i
-    except:
-        ops = l.split()
-        op = True
-
-ns = []
-for l in lines:
-    ns.append(l)
 
 def red(aa, op):
     if op == '+':
-        r = 0
-        f = operator.add
+        f = add
     elif op == '*':
-        r = 1
-        f = operator.mul
+        f = mul
 
-    for a in aa:
-        r = f(r, a)
+    r = reduce(f, aa)
     return r
 
-su = 0
 op = None
 args = []
-for col in zip(*ns):
-    skip = False
+for col in zip(*lines):
     if col[0] == '\n':
-        skip = True
-    if not skip:
-        mop = col[4]
-        if mop != ' ':
-            op = mop
+        s += red(args, op)
+        break
 
-        s = ''.join(col[:4]).strip()
-    if (not skip) and (tuple(col) != (' ', ' ', ' ', ' ', ' ')):
-        n = int(s)
+    mop = col[4]
+    if mop != ' ':
+        op = mop
+
+    l = ''.join(col[:4]).strip()
+    if tuple(col) != (' ', ' ', ' ', ' ', ' '):
+        n = int(l)
         args.append(n)
     else:
-        print(args, op)
-        r = red(args, op)
-        su += r
+        # print(args, op)
+        s += red(args, op)
         args = []
 
 print("?")
-print(su)
+print(s)

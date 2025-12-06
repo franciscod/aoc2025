@@ -10,6 +10,9 @@ from itertools import permutations
 from itertools import product
 from functools import cmp_to_key
 from functools import lru_cache, cache
+from functools import reduce
+
+from operator import add, mul
 
 # from parse import parse
 
