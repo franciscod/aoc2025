@@ -76,10 +76,11 @@ def widemp(mp, rows, cols, widec=WIDEC):
     return rows, cols, mp2, rmp2
 
 
-def inputlines():
+def inputlines(nostrip=False):
     lines = []
     for line in fileinput.input():
-        line = line.strip()
+        if not nostrip:
+            line = line.strip()
         lines.append(line)
     return lines
 
