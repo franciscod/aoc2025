@@ -14,11 +14,11 @@ from functools import reduce
 
 from operator import add, mul
 
-# from parse import parse
+from parse import parse
 
-# from sympy.solvers import solve
-# from sympy import Symbol
-# from sympy.core.numbers import Integer
+from sympy.solvers import solve
+from sympy import Symbol
+from sympy.core.numbers import Integer
 
 
 def pairs(s):

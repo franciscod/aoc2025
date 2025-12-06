@@ -15,3 +15,7 @@ $(TODAY)/Makefile:
 	cd $(TODAY); ln -s ../Makefile_day Makefile
 	cd $(TODAY); ln -s ../lib.py
 	cp skel.py $(TODAY)/solve.py
+
+venv: requirements.txt
+	python3 -m venv venv
+	venv/bin/pip install -r requirements.txt
