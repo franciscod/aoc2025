@@ -20,17 +20,15 @@ area = 0
 
 xs = set()
 ys = set()
-xs.add(-9999999)
-ys.add(-9999999)
-xs.add(9999999)
-ys.add(9999999)
-xs.add(-10000000)
-ys.add(-10000000)
-xs.add(10000000)
-ys.add(10000000)
 for x, y in ps:
     xs.add(x)
+    xs.add(x-1)
+    xs.add(x+1)
     ys.add(y)
+    ys.add(y-1)
+    ys.add(y+1)
+
+print(len(xs), len(ys))
 
 xv = list(sorted(xs))
 yv = list(sorted(ys))
