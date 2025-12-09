@@ -220,7 +220,7 @@ for a in psi:
         ax, ay = xv[axi], yv[ayi]
         bx, by = xv[bxi], yv[byi]
 
-        ar = (bx-ax+1)*(by-ay+1)
+        ar = (abs(bx-ax)+1)*(abs(by-ay)+1)
 
         if area < ar:
             area = ar
@@ -253,3 +253,4 @@ for yi, y in enumerate(yv):
 print("?")
 print(area)
 # 1472215589 no, too low
+# 1556457424 no, too high
