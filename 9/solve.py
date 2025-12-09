@@ -11,7 +11,7 @@ ps = []
 s = 0
 for l in lines:
     x, y = parseints(l, ',')
-    print(x, y)
+    # print(x, y)
     s += 1
     ps.append((x, y))
 
