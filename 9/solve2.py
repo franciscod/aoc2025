@@ -12,6 +12,10 @@ ys = set()
 for x, y in ps:
     xs.add(x)
     ys.add(y)
+    xs.add(x-1)
+    ys.add(y-1)
+    xs.add(x+1)
+    ys.add(y+1)
 
 xv = list(sorted(xs))
 yv = list(sorted(ys))
