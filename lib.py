@@ -20,6 +20,8 @@ from sympy.solvers import solve
 from sympy import Symbol
 from sympy.core.numbers import Integer
 
+import numpy as np
+import scipy
 
 def pairs(s):
     return combinations(s, 2)
