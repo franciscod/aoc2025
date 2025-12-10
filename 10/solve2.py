@@ -1,7 +1,7 @@
 from lib import *
 # import networkx as nx
 # sys.setrecursionlimit(2999)
-from sympy import *
+from pulp import *
 import sympy
 
 lines = inputlines()
@@ -11,18 +11,19 @@ lines = inputlines()
 
 
 def doit2(ws, js):
+    prob = LpProblem("myProblem", LpMinimize)
     psyms = []
 
     mat = set()
-
     constr = []
     for i, w in enumerate(ws):
-        psym = Symbol('p' + str(i), domain=S.Integers)
+        psym = LpVariable('p' + str(i), 0, 1000, LpInteger)
         psyms.append(psym)
         constr.append(psym >= 0)
         for b in w:
             mat.add((i,b))
-
+    f = sum(psyms)
+    prob += f
 
 
     for j, v in enumerate(js):
@@ -31,17 +32,17 @@ def doit2(ws, js):
             if (i, j) in mat:
                 pss.append(psyms[i])
         eq = sum(pss)
-        print(j, ':', eq, '=', v)
-        constr.append(Eq(eq, v))
+        prob += eq == v
 
-    f = sum(psyms)
 
-    print(constr)
+    # print(constr)
     # print(f)
-    r, vs = sympy.solvers.simplex.lpmin(f, constr)
-    print(r, vs)
+    prob.solve(PULP_CBC_CMD(msg=0))
+    r = 0
+    for v in prob.variables():
+        r += v.varValue
     # print()
-    return r
+    return int(r)
 
 
 s = 0
@@ -53,10 +54,8 @@ for l in lines:
         ws.append(parseints(w[1:-1], ','))
     js = parseints(jolt[1:-1], ',')
     r = doit2(ws, js)
-    print(r)
+    # print(r)
     s += r
 
 print("?")
 print(s)
-
-# 19235 no

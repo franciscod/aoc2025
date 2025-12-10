@@ -1,4 +1,5 @@
 mpmath==1.3.0
 networkx==3.6
 parse==1.20.2
+PuLP==3.3.0
 sympy==1.14.0
