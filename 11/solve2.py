@@ -23,7 +23,7 @@ for l in lines:
 # print("}")
 # pprint(deps)
 
-more = [{'svr':(False, False, 1)}]
+more = [{('svr', False, False): 1}]
 
 count = 0
 while more:
@@ -31,8 +31,7 @@ while more:
     ks = head
 
     nks = {}
-    for k, v in ks.items():
-        pd, pf, n = v
+    for (k, pd, pf), n in ks.items():
         pd = pd or k == 'dac'
         pf = pf or k == 'fft'
         if k == 'out':
@@ -41,9 +40,9 @@ while more:
             continue
 
         for j in deps[k]:
-            v = nks.get(j, (pd, pf, 0))
-            npd, npf, nn = v
-            nks[j] = (npd, npf, nn + n)
+            nk = (j, pd, pf)
+            nn = nks.get(nk, 0)
+            nks[nk] = nn + n
 
     if nks:
         more.append(nks)
