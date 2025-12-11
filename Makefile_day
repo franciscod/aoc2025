@@ -1,6 +1,7 @@
 YEAR = 2025
 
 tryhard: wait all
+go: all
 all: input level pre edit
 
 s: solve
